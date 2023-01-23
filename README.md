@@ -1,2 +1,2 @@
 # nullylang
-Null Y Programming Language
+NullY Programming Language
