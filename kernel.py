@@ -1,5 +1,6 @@
-"""NullOS Kernel, not needed for SDK"""
+"""NullOS Kernel"""
 from programs import progs
+import nullysdk as NullY
 # TODO: Make the kernel
 # NEEDS TO WORK WITH MICROPYTHON
 # Needed funcs
@@ -10,21 +11,21 @@ from programs import progs
 
 
 def shell():
-    "Shell for the kernel"
-    FLAG_STOP = 0
-    while FLAG_STOP == 0:
+    """Shell for the kernel"""
+    flag_stop = 0
+    while flag_stop == 0:
 
         args = input("$ ").split(" ")
         if args[0] in ["stop", "exit", "shutdown", "halt", "logout"]:
-            FLAG_STOP = 1
+            flag_stop = 1
         elif args[0] == "":
             pass
         else:
-            run(" ".join(args))
+            run(args)
 
 
-def run(key: str):
-    """run a program in 'programs.json'"""
+def run(key: list):
+    """Run a program in 'programs.json'"""
     colors = {
         "HEADER": '\033[95m',
         "OKBLUE": '\033[94m',
@@ -37,12 +38,13 @@ def run(key: str):
         "BOLD": '\033[1m',
         "UNDERLINE": '\033[4m'
     }
-    if key in progs:
-        with open(progs[key], "r") as file:
-            exec(file.read())
+    if key[0] in progs:
+        with open(progs[key[0]], "r") as file:
+            exec(file.read(), {"y_args": key,
+                 "y_program": key[0], "NullY": NullY})
     else:
-        print(colors["FAIL"] + key +
-              " is not installed or linked!" + colors["ENDC"])
+        print(colors["FAIL"] + key[0] +
+              " no está instalado, vinculado o escrito correctamente." + colors["ENDC"])
 
 
 if __name__ == "__main__":

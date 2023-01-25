@@ -1,2 +1,2 @@
 # nullylang
-NullY Programming Language
+NullY OS & SDK

@@ -34,8 +34,8 @@ class Program:
         """Program Init"""
         self.console = Console()
 
-    def main(self, cliargs: list = None):
+    def main(self, args: list):
         """-- PLEASE CHANGE THE MAIN SECTION ON YOUR CODE OR ADD A DOCSTRING --"""
         self.console.write_line(
             "This program does not have a 'main' function.")
-        self.console.write_line("Args: " + str(cliargs))
+        self.console.write_line("Args: " + str(args), color="OKBLUE")
