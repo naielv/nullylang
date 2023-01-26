@@ -5,11 +5,11 @@ import nullysdk as NullY
 # NEEDS TO WORK WITH MICROPYTHON
 # Needed funcs
 # [x] Shell
-# [ ] Console
-# [ ] Input
+# [x] Console
+# [x] Input
 # [ ] GUI
 
-
+osver = "PATATA-VELOZ"
 def shell():
     """Shell for the kernel"""
     flag_stop = 0
@@ -39,9 +39,16 @@ def run(key: list):
         "UNDERLINE": '\033[4m'
     }
     if key[0] in progs:
-        with open(progs[key[0]], "r") as file:
-            exec(file.read(), {"y_args": key,
-                 "y_program": key[0], "NullY": NullY})
+        with open(progs[key[0]][0], "r") as file:
+            try:
+                exec(file.read(), {"y_args": key,
+                                   "y_program": key[0],
+                                   "NullY": NullY,
+                                   "y_progs": progs,
+                                   "y_osver": osver})
+            except Exception as e:
+                print(colors["FAIL"] + key[0] +
+                      " ha fallado." + colors["ENDC"])
     else:
         print(colors["FAIL"] + key[0] +
               " no está instalado, vinculado o escrito correctamente." + colors["ENDC"])

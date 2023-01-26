@@ -1,0 +1,14 @@
+{
+    "test": [
+        "./config/AppData/test.py",
+        "Example App"
+    ],
+    "help": [
+        "./config/AppData/basic.py",
+        "Shows a help message for a command"
+    ],
+    "os": [
+        "./config/AppData/basic.py",
+        "Shows info of NullOS"
+    ]
+}
